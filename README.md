@@ -1,5 +1,5 @@
 Prerequisites  
-1. WS Game Company [Scrabble Set] (https://www.wsgamecompany.com/scrabble-deluxe-edition.html)
+1. WS Game Company [Scrabble Set](https://www.wsgamecompany.com/scrabble-deluxe-edition.html)
 2. Windows OS (only runs on Windows)  
 3. iVCAM (installed both in camera device and host machine)
 4. CUDA-capable GPU (without the GPU, training and executing will take far too long)
