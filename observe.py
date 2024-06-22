@@ -1,5 +1,5 @@
-import torch, cv2, queue, visualize, pickle, time #, tile_recognition_ml.dataset as dataset
-import numpy as np, img_processing as process, precise_corners as polish
+import torch, cv2, queue, visualize, pickle, time #tile_recognition_ml.dataset as dataset
+import numpy as np, img_processing as process
 from solver.board import Board
 from solver.dawg import Dawg, DawgNode
 from concurrent.futures import ThreadPoolExecutor
@@ -11,6 +11,7 @@ from torchvision.models.detection.rpn import AnchorGenerator
 from torchvision.transforms import functional as F
 from tile_recognition_ml.network import Network, classes
 from sounds.play_audio import playsound, ramble
+from random import randint
 
 class MyEventHandler(FileSystemEventHandler):
     def __init__(self):
@@ -47,7 +48,7 @@ def get_krcnn_model(num_keypoints=4, weights_path='kpt_rcnn_ml/keypointsrcnn_bia
 
 def get_ocr_model():
     model = Network()
-    model.load_state_dict(torch.load('tile_recognition_ml/fantastic_explosions.pth'))
+    model.load_state_dict(torch.load('tile_recognition_ml/wonderful_explosions.pth'))
 
     return model
 
@@ -79,10 +80,9 @@ def find_gameboard_corners(image):
     _, keypoints = process_krcnn_output(output)
 
     playsound('sounds/corners.wav')
-    return polish.improve_corners(keypoints, image)
+    return process.improve_corners(keypoints, image)
 
-def filter_and_put_tiles(count, tiles, board):
-    ramble(count % 4 + 1)
+def filter_and_put_tiles(tiles, board):
     for tile in tiles:
         tile_image = tile[0]
         tile_image = torch.from_numpy(np.array(tile_image, dtype=np.float32))
@@ -95,11 +95,7 @@ def filter_and_put_tiles(count, tiles, board):
         label = process_ocr_output(prediction)
         if "FALSE+" not in label:
             if label == "BLANK":
-                letter = input(f"Enter the letter representing the blank at row #{tile[1]+1}, column #{tile[2]+1}: ")
-                while not letter.isalpha():
-                    playsound('sounds/bruh.wav')
-                    letter = input(f"What's the letter for the blank at row #{tile[1]+1}, column #{tile[2]+1}: ")
-                board.place_tile(letter.lower(), tile[1], tile[2])  
+                board.place_tile('?', tile[1], tile[2])  
             else: 
                 board.place_tile(label, tile[1], tile[2])
 
@@ -109,9 +105,10 @@ def get_board():
 
     return Board(word_graph)
 
-def get_rack():
+def get_rack(ramble_idx):
+    ramble(ramble_idx % 4 + 1)
     rack = input("Please enter your rack. Use '?' for blanks: ")
-    while len(rack) != 7 or any((not char.isalpha()) and char != '?' for char in rack) or rack.count('?') > 2:
+    while len(rack) > 7 or len(rack) < 1 or any((not char.isalpha()) and char != '?' for char in rack) or rack.count('?') > 2:
         playsound('sounds/bruh.wav')
         rack = input("Please enter your 7-letter rack. Use '?' for blanks: ")
     if rack.count('?') == 2:
@@ -122,30 +119,27 @@ def get_rack():
     return rack
 
 def get_plays(board, rack):
+    start_time = time.time()
     valid_words = board.all_valid_plays(rack.upper())
     plays = board.sort_plays(valid_words)
+    print(f"Took a total of {time.time() - start_time} seconds to solve.")
+    visualize.display_plays(plays[:100], board)
     board.clear()
-    print(plays[:100])
-
-def display_loading_msg():
-    print("loading program...")
-    print("please wait patiently. it may take up to 15 seconds (or 15 minutes if ur on yo mama's laptop)")
 
 def display_ready_msg():
     print("READY")
     print("press ctrl+S in the iVCAM window to take screenshot of the board")
 
 if __name__ == "__main__":
-    display_loading_msg()
     event_handler = MyEventHandler()
     observer = Observer()
     observer.schedule(event_handler, path="C:\\Users\\31415\\Videos\\iVCam", recursive=True)
     observer.start()
     board = get_board()
     running = True
-    count = 0
+    rambling_idx = randint(0, 3)
     display_ready_msg()
-    
+
     try:
         while running:
             try:
@@ -159,13 +153,13 @@ if __name__ == "__main__":
                 tiles = process.explode(unwarped_image)
                 #dataset.save_frags(tiles, event_handler.device, event_handler.ocr_model, num)
                 filter_and_put_tiles(tiles, board)
-                board.display_board()
+                fail_count = 0
+                while visualize.display_board(board, fail_count, rambling_idx):
+                    fail_count += 1
 
-                rack = get_rack()
-                start_time = time.time()
+                rack = get_rack(rambling_idx)
                 get_plays(board, rack)
-                print(f"Time taken: {time.time() - start_time}")
-                count += 1
+                rambling_idx += 1
 
             except queue.Empty:
                 pass
