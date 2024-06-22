@@ -7,7 +7,7 @@ from data_loader import ImageFolderDataset
 
 # Function to save the model
 def saveModel():
-    path = "./fantastic_explosions.pth"
+    path = "./wonderful_explosions.pth"
     torch.save(model.state_dict(), path)
 
 # Function to test the model with the test dataset and print the accuracy for the test images
