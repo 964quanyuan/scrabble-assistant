@@ -1,4 +1,4 @@
-import torch, cv2, queue, visualize, pickle, time #tile_recognition_ml.dataset as dataset
+import torch, cv2, queue, visualize, pickle, time
 import numpy as np, img_processing as process
 from solver.board import Board
 from solver.dawg import Dawg, DawgNode
@@ -151,7 +151,6 @@ if __name__ == "__main__":
                 unwarped_image = process.unwarp(image, precise_keypoints)
                 
                 tiles = process.explode(unwarped_image)
-                #dataset.save_frags(tiles, event_handler.device, event_handler.ocr_model, num)
                 filter_and_put_tiles(tiles, board)
                 fail_count = 0
                 while visualize.display_board(board, fail_count, rambling_idx):
