@@ -210,8 +210,9 @@ def display_plays(plays, board):
             self.height = height
             self.pts_font = font  # Font for text items (if applicable)
             self.word_font = pygame.font.Font(None, 28)
-            self.selected = plays[0]
-            self.prev = plays[1]
+            if plays:
+                self.selected = plays[0] 
+                self.prev = plays[0]
             self.item_height = item_height  # Height of each list item
             self.scroll_pos = 0  # Current scroll position (index of first visible item)
 
@@ -241,16 +242,17 @@ def display_plays(plays, board):
                     draw_tile(screen, x + i * (TILE_SIZE + GAP_SIZE), y, item[0][i], board.VALUES, DARK_GREEN)
 
         def erase_word(self, screen, item):
-            row = item[1][0]
-            col = item[1][1]
-            x = col * TILE_SIZE + (col + 1) * GAP_SIZE
-            y = row * TILE_SIZE + (row + 1) * GAP_SIZE
+            if item:
+                row = item[1][0]
+                col = item[1][1]
+                x = col * TILE_SIZE + (col + 1) * GAP_SIZE
+                y = row * TILE_SIZE + (row + 1) * GAP_SIZE
 
-            for i in range(len(item[0])):
-                if item[1][2] == 1:
-                    put_tile(x, y + i * (TILE_SIZE + GAP_SIZE), row + i, col, board, screen)
-                else:
-                    put_tile(x + i * (TILE_SIZE + GAP_SIZE), y, row, col + i, board, screen)
+                for i in range(len(item[0])):
+                    if item[1][2] == 1:
+                        put_tile(x, y + i * (TILE_SIZE + GAP_SIZE), row + i, col, board, screen)
+                    else:
+                        put_tile(x + i * (TILE_SIZE + GAP_SIZE), y, row, col + i, board, screen)
 
         def draw(self, screen):
             list_rect = pygame.Rect(self.x, self.y - 6, self.width, self.height + 6)
