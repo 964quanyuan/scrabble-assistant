@@ -1,5 +1,5 @@
 @echo off
-echo hello mutherfucker!
+echo oh hey!
 start /B python -c "from sounds.play_audio import greet; greet()"
 start /B python observe.py
 start "" "C:\Program Files\e2eSoft\iVCAM\iVCAM.exe"
