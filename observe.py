@@ -144,7 +144,7 @@ if __name__ == "__main__":
         while running:
             try:
                 path = event_handler.event_queue.get(block=False, timeout=1)
-                image = cv2.imread(path)
+                image = process.rot_flip(cv2.imread(path))
 
                 precise_keypoints = find_gameboard_corners(image)
                 visualize.visualize_keypoints(image.copy(), precise_keypoints)

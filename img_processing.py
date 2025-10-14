@@ -18,6 +18,13 @@ def unwarp(image, corners):
     
     return cropped_image
 
+def rot_flip(img: np.ndarray) -> np.ndarray:
+    # 1) rotate 90° CW
+    rot = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)   # returns new array
+    # 2) flip about X axis (vertical flip)
+    out = cv2.flip(rot, 0)  # flipCode=0 flips around the x-axis (vertical)
+    return out
+
 def explode(image):
     fragments = []
     for x in range(15):
