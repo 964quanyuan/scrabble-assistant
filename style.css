@@ -1,18 +1,122 @@
-:root{--bg:#f7f8fa;--card:#fff}
-*{box-sizing:border-box}
-body{
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  margin:0;
-  padding:2rem;
-  background:var(--bg);
-  color:#111;
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Orbitron:wght@400;700&display=swap');
+
+:root {
+  --bg: linear-gradient(135deg, #0a0a23 0%, #1a1a3a 50%, #0f0f2a 100%);
+  --card: rgba(255, 255, 255, 0.1);
+  --accent: #00ff41;
+  --text: #e0e0ff;
+  --shadow: 0 0 20px rgba(0, 255, 65, 0.3);
 }
-header { text-align:center; margin-bottom:1.5rem; }
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Orbitron', monospace;
+  margin: 0;
+  padding: 2rem;
+  background: var(--bg);
+  background-attachment: fixed;
+  color: var(--text);
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(0, 255, 65, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 255, 65, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+header { 
+  text-align: center; 
+  margin-bottom: 2rem; 
+}
+
+header h1 {
+  font-family: 'Bangers', cursive;
+  font-size: 3rem;
+  color: var(--accent);
+  text-shadow: var(--shadow);
+  margin: 0;
+  letter-spacing: 0.1em;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: var(--shadow); }
+  to { text-shadow: 0 0 30px rgba(0, 255, 65, 0.6); }
+}
+
+header p {
+  font-size: 1.2rem;
+  color: rgba(224, 224, 255, 0.8);
+  margin: 0.5rem 0 0 0;
+}
+
 .grid {
-  display:grid;
-  gap:1rem;
-  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
-.card { background:var(--card); padding:0.6rem; border-radius:12px; box-shadow:0 4px 18px rgba(0,0,0,.06); }
-.card h3{ margin:0 0 .5rem 0; font-size:1rem }
-video{ width:100%; border-radius:8px; display:block }
+
+.card { 
+  background: var(--card); 
+  padding: 1.5rem; 
+  border-radius: 16px; 
+  box-shadow: var(--shadow), inset 0 0 20px rgba(0, 255, 65, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 255, 65, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, var(--accent), transparent);
+  opacity: 0.1;
+  animation: rotate 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 10px 40px rgba(0, 255, 65, 0.4);
+}
+
+.card h3 { 
+  margin: 0 0 1rem 0; 
+  font-family: 'Bangers', cursive;
+  font-size: 1.5rem;
+  color: var(--accent);
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+}
+
+video { 
+  width: 100%; 
+  border-radius: 12px; 
+  display: block;
+  border: 2px solid rgba(0, 255, 65, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
