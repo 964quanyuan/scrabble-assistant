@@ -111,3 +111,11 @@ video {
   line-height: 1.5;
   text-align: left;
 }
+
+.desc .highlight {
+  color: #000;
+  background: #fff;
+  padding: 0 4px;
+  border-radius: 2px;
+  font-weight: bold;
+}
