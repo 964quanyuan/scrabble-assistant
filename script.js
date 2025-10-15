@@ -1,8 +1,9 @@
 // simple static roster — you can also dynamically fetch a JSON index.
 const videos = [
   { src: "videos/scrabble_demo_basic.webm", title: "Basic Demo" },
-  { src: "videos/scrabble_blank_sandsoap.webm", title: "Bingo Find" },
-  { src: "videos/scrabble_demo_invalid.webm", title: "Invalid Inputs" },
+  { src: "videos/scrabble_bingo.webm", title: "Bingo Swarm" },
+  { src: "videos/scrabble_demo_invalid.webm", title: "Bruh Moments" },
+  { src: "videos/scrabble_oxy.webm", title: "PUSHING THE LIMITS" },
 ];
 
 const gallery = document.getElementById('gallery');
