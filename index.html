@@ -1,3 +1,4 @@
+<!-- ...existing code... -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,12 +9,28 @@
 </head>
 <body>
   <header>
-    <h1>*_.**---Scrabble Assistant-—..-**—-Quan Yuan-—-**._*</h1>
-    <p>Short Demo Clips Where I Show the Assistant Showing Me How It's Done</p>
+    <h1>*** -*-* *-* *-Scrabble Assistant-*** -*** *-** *</h1>
+    <p>A Comprehensive AI-powered Scrabble Scanner/Solver</p>
+    <p>by Quan Yuan, feat. Rick and Morty</p>
   </header>
 
-  <main id="gallery" class="grid"></main>
+  <!-- added two-column container -->
+  <div class="two-col">
+    <div id="hero-left">
+      <figure id="scrabein-figure">
+        <img id="scrabein" src="images/scrabein.png" alt="setup illustration" />
+        <figcaption id="scrabein-desc">The current board state is readily scanned via screenshots. The chronology of the gameboard processing is: corner detection → tile recognition → solution. One popup window is generated for each step. Since the computer-vision models achieve ~97–99% accuracy, some human supervision is required.</figcaption>
+        <figcaption id="scrabein-credit">Quan Yuan — 2024</figcaption>
+      </figure>
+      <div id="artifacts-container" aria-live="polite"></div>
+    </div>
+
+    <div id="hero-right">
+      <main id="gallery" class="grid"></main>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
 </html>
+<!-- ...existing code... -->

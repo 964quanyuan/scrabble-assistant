@@ -47,11 +47,51 @@ header p {
   margin: 0.5rem 0 0 0;
 }
 
+.two-col {
+  display: grid;
+  grid-template-columns: 620px 1fr; /* left fixed column for image, right flexible */
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* left column image */
+#hero-left {
+  display: flex;
+  flex-direction: column; /* stack figure then artifacts */
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#scrabein {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 620px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: transparent;
+}
+
+#scrabein-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+}
+
+#scrabein-desc {
+  font-family: 'Papyrus', 'IM Fell English', serif;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+  text-align: left;
+}
+
 .grid {
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: repeat(2, 1fr);
-  justify-items: center;
+  grid-template-columns: 1fr;
+  justify-items: stretch;
 }
 
 .card { 
@@ -79,24 +119,17 @@ header p {
   text-shadow: none;
 }
 
-video { 
-  width: 100%; 
-  border-radius: 0; 
-  display: block;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: none;
-}
-
 .video-row {
   display: flex;
   align-items: flex-start;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
-/* Video takes left side */
+/* keep video size inside the card so each card shows video + text */
 .video-row video {
-  width: 50%;
-  max-width: 400px;
+  width: 45%;
+  max-width: 320px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Text column on the right */
@@ -152,26 +185,148 @@ video {
   font-weight: bold;
 }
 
+/* Artifacts card (scrambled thumbnails) */
+.artifacts-thumb {
+  position: relative;
+  width: 220px;
+  height: 160px;
+  margin: 0 auto;
+  cursor: pointer;
+  perspective: 800px;
+}
+.artifacts-thumb img {
+  position: absolute;
+  width: 140px;
+  height: auto;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+  transition: transform 220ms ease, filter 220ms ease;
+  image-rendering: pixelated;
+}
+/* scrambled layout offsets */
+.artifacts-thumb img:nth-child(1) { transform: rotate(-12deg) translate(-12px, -6px); z-index: 3; }
+.artifacts-thumb img:nth-child(2) { transform: rotate(8deg) translate(8px, 8px); z-index: 2; opacity: 0.95; }
+.artifacts-thumb img:nth-child(3) { transform: rotate(-4deg) translate(18px, -2px); z-index: 1; opacity: 0.9; }
+
+/* hover lift */
+.artifacts-thumb:hover img { transform: translateY(-6px) scale(1.02); }
+
+/* Artifacts card title */
+.artifacts-title {
+  text-align: center;
+  margin-top: 0.75rem;
+  font-family: 'Papyrus', 'IM Fell English', serif;
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+/* modal / lightbox for artifacts gallery */
+.artifact-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.85);
+  z-index: 9999;
+}
+.artifact-modal.open { display: flex; }
+
+.artifact-viewer {
+  width: min(90vw, 900px);
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #fff;
+}
+.artifact-viewer img, .artifact-viewer video {
+  max-width: 100%;
+  max-height: 80vh;
+  display: block;
+  border: 3px solid rgba(255,255,255,0.06);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.7);
+  background: #000;
+}
+
+/* nav buttons */
+.artifact-nav {
+  background: rgba(255,255,255,0.06);
+  border: none;
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  font-size: 1.25rem;
+  border-radius: 6px;
+}
+.artifact-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: rgba(255,255,255,0.06);
+  border: none;
+  color: #fff;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 6px;
+}
+
+/* caption below viewer */
+.artifact-caption {
+  margin-top: 0.6rem;
+  text-align: center;
+  color: rgba(255,255,255,0.9);
+  font-family: 'Papyrus', 'IM Fell English', serif;
+}
+
+/* container under the left column figure for artifacts */
+#artifacts-container {
+  margin-top: 2.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* ensure the artifacts card fills available left column width nicely */
+.artifacts-card {
+  width: 100%;
+  max-width: 620px; /* match your left column max width */
+  padding: 2.5rem;
+}
+
+/* small-screen adjustments */
+@media (max-width: 520px) {
+  .artifacts-thumb { width: 160px; height: 120px; }
+  .artifact-viewer { width: 95vw; flex-direction: column; }
+}
+
 @media (max-width: 800px) {
-  .grid {
-    grid-template-columns: 1fr;
+  .two-col {
+    grid-template-columns: 1fr; /* stack image above gallery */
   }
-  
+
+  #hero-left {
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
   .video-row {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .video-row video {
     width: 100%;
     max-width: none;
   }
-  
+
   .text-col {
     align-items: center;
     text-align: center;
   }
-  
+
   .text-col h3, .text-col .desc {
     text-align: center;
   }
