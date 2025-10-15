@@ -1,9 +1,25 @@
 // simple static roster — you can also dynamically fetch a JSON index.
 const videos = [
-  { src: "videos/scrabble_demo_basic.webm", title: "Basic Demo" },
-  { src: "videos/scrabble_bingo.webm", title: "Bingo Swarm" },
-  { src: "videos/scrabble_demo_invalid.webm", title: "Bruh Moments" },
-  { src: "videos/scrabble_oxy.webm", title: "PUSHING THE LIMITS" },
+  { 
+    src: "videos/scrabble_demo_basic.webm", 
+    title: "Basic Demo", 
+    desc: "A short demonstration of the Scrabble Assistant's core move-finding logic in action.\n(▀̿Ĺ̯▀̿ ̿)"
+  },
+  { 
+    src: "videos/scrabble_bingo.webm", 
+    title: "Bingo Swarm", 
+    desc: "Notice the model slipping into a coma briefly when faced with a plethora of high-scoring bingo opportunities.\n༼ʘ̚ل͜ʘ̚༽"
+  },
+  { 
+    src: "videos/scrabble_demo_invalid.webm", 
+    title: "Bruh Moments", 
+    desc: "Error-handling and invalid move detection under edge-case board states.\nლ(ಠ益ಠლ)"
+  },
+  { 
+    src: "videos/scrabble_oxy.webm", 
+    title: "PUSHING THE LIMITS", 
+    desc: "Stress test the model on extreme-scoring words and extreme board density.\nಥ_ಥ"
+  },
 ];
 
 const gallery = document.getElementById('gallery');
@@ -12,10 +28,13 @@ videos.forEach(v => {
   card.className = 'card';
   card.innerHTML = `
     <h3>${v.title}</h3>
-    <video controls preload="metadata" playsinline>
-      <source src="${v.src}" type="video/webm">
-      Your browser doesn't support WebM.
-    </video>
+    <div class="video-row">
+      <video controls preload="metadata" playsinline>
+        <source src="${v.src}" type="video/webm">
+        Your browser doesn't support WebM.
+      </video>
+      <p class="desc">${v.desc}</p>
+    </div>
   `;
   gallery.appendChild(card);
 });

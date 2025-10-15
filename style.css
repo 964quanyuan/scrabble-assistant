@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Orbitron:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap');
 
 :root {
-  --bg: linear-gradient(135deg, #0a0a23 0%, #1a1a3a 50%, #0f0f2a 100%);
-  --card: rgba(255, 255, 255, 0.1);
-  --accent: #00ff41;
-  --text: #e0e0ff;
-  --shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+  --bg: #000;
+  --card: rgba(255, 255, 255, 0.05);
+  --accent: #fff;
+  --text: #fff;
+  --shadow: none;
 }
 
 * {
@@ -13,11 +13,10 @@
 }
 
 body {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Papyrus', 'IM Fell English', serif;
   margin: 0;
   padding: 2rem;
   background: var(--bg);
-  background-attachment: fixed;
   color: var(--text);
   position: relative;
   overflow-x: hidden;
@@ -25,16 +24,7 @@ body {
 
 body::before {
   content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(circle at 20% 80%, rgba(0, 255, 65, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(0, 255, 65, 0.05) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: -1;
+  display: none;
 }
 
 header { 
@@ -43,80 +33,81 @@ header {
 }
 
 header h1 {
-  font-family: 'Bangers', cursive;
+  font-family: 'Papyrus', 'IM Fell English', serif;
   font-size: 3rem;
   color: var(--accent);
-  text-shadow: var(--shadow);
+  text-shadow: none;
   margin: 0;
-  letter-spacing: 0.1em;
-  animation: glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-  from { text-shadow: var(--shadow); }
-  to { text-shadow: 0 0 30px rgba(0, 255, 65, 0.6); }
+  letter-spacing: 0.05em;
 }
 
 header p {
   font-size: 1.2rem;
-  color: rgba(224, 224, 255, 0.8);
+  color: rgba(255, 255, 255, 0.8);
   margin: 0.5rem 0 0 0;
 }
 
 .grid {
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+}
+
+@media (max-width: 800px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .card { 
   background: var(--card); 
   padding: 1.5rem; 
-  border-radius: 16px; 
-  box-shadow: var(--shadow), inset 0 0 20px rgba(0, 255, 65, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 255, 65, 0.2);
+  border-radius: 0; 
+  box-shadow: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: none;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
-.card::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: conic-gradient(from 0deg, transparent, var(--accent), transparent);
-  opacity: 0.1;
-  animation: rotate 20s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes rotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
 .card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 10px 40px rgba(0, 255, 65, 0.4);
+  transform: translateY(-5px);
 }
 
 .card h3 { 
   margin: 0 0 1rem 0; 
-  font-family: 'Bangers', cursive;
+  font-family: 'Papyrus', 'IM Fell English', serif;
   font-size: 1.5rem;
   color: var(--accent);
   text-align: center;
-  text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+  text-shadow: none;
 }
 
 video { 
   width: 100%; 
-  border-radius: 12px; 
+  border-radius: 0; 
   display: block;
-  border: 2px solid rgba(0, 255, 65, 0.3);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: none;
+}
+
+.video-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.video-row video {
+  width: 50%;
+  max-width: 400px;
+}
+
+.desc {
+  flex: 1;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: left;
 }
