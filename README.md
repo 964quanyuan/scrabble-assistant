@@ -1,3 +1,5 @@
+DEMO: [click here](https://964quanyuan.github.io/scrabble-assistant/)
+
 Prerequisites  
 1. WS Game Company [Scrabble Set](https://www.wsgamecompany.com/scrabble-deluxe-edition.html)
 2. Windows OS (only runs on Windows)  
