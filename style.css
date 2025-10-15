@@ -54,12 +54,6 @@ header p {
   justify-items: center;
 }
 
-@media (max-width: 800px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 .card { 
   background: var(--card); 
   padding: 1.5rem; 
@@ -99,9 +93,47 @@ video {
   gap: 1.5rem;
 }
 
+/* Video takes left side */
 .video-row video {
   width: 50%;
   max-width: 400px;
+}
+
+/* Text column on the right */
+.text-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0rem;
+  flex: 2;
+}
+
+.text-col .face {
+  font-family: monospace;
+  color: #000;
+  background: #fff;
+  padding: 0rem 0rem;
+  border-radius: 0px;
+  align-self: flex-start;
+  font-size: 2.1rem;
+  letter-spacing: 0.05em;
+  user-select: none;
+}
+
+/* Title + description styling */
+.text-col h3 {
+  margin: 0;
+  font-family: 'Papyrus', 'IM Fell English', serif;
+  font-size: 1.5rem;
+  color: #fff;
+  text-align: left;
+}
+
+.text-col .desc {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: left;
 }
 
 .desc {
@@ -118,4 +150,29 @@ video {
   padding: 0 4px;
   border-radius: 2px;
   font-weight: bold;
+}
+
+@media (max-width: 800px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .video-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .video-row video {
+    width: 100%;
+    max-width: none;
+  }
+  
+  .text-col {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .text-col h3, .text-col .desc {
+    text-align: center;
+  }
 }
