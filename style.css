@@ -281,9 +281,18 @@ header p {
   font-family: 'Papyrus', 'IM Fell English', serif;
 }
 
+#credit {
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
+  text-align: center;
+  color: rgba(255,255,255,0.6);
+  font-family: 'Papyrus', 'IM Fell English', serif;
+  font-size: 1.9rem;
+}
+
 /* container under the left column figure for artifacts */
 #artifacts-container {
-  margin-top: 2.5rem;
+  margin-top: 1.5rem;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -293,7 +302,32 @@ header p {
 .artifacts-card {
   width: 100%;
   max-width: 620px; /* match your left column max width */
-  padding: 2.5rem;
+  padding: 1.5rem;
+}
+
+#source-link {
+  width: 100%;
+  margin-top: 0.3rem;           /* gap from artifacts-container */
+  padding-top: 0.2rem;      /* extra breathing room */
+  display: flex;
+  justify-content: left;
+  border-top: 1px dashed rgba(255,255,255,0.06); /* subtle separator */
+}
+
+#source-link a {
+  font-family: 'Papyrus', 'IM Fell English', serif;
+  color: rgba(255,255,255,0.95);
+  text-decoration: underline;
+  background: rgba(225,225,225,0.02);
+  padding: 0.2rem 0.2rem;
+  border-radius: 6px;
+  border: 1px solid rgba(225,225,225,0.04);
+}
+
+/* small-screen tweak: reduce top padding so it doesn't take too much space */
+@media (max-width: 520px) {
+  #source-link { padding-top: 0.4rem; margin-top: 0.6rem; }
+  #source-link a { padding: 0.25rem 0.5rem; font-size: 0.95rem; }
 }
 
 /* small-screen adjustments */

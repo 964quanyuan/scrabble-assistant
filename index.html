@@ -1,4 +1,3 @@
-<!-- ...existing code... -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,9 +19,12 @@
       <figure id="scrabein-figure">
         <img id="scrabein" src="images/scrabein.png" alt="setup illustration" />
         <figcaption id="scrabein-desc">The current board state is readily scanned via screenshots. The chronology of the gameboard processing is: corner detection → tile recognition → solution. One popup window is generated for each step. Since the computer-vision models achieve ~97–99% accuracy, some human supervision is required.</figcaption>
-        <figcaption id="scrabein-credit">Quan Yuan — 2024</figcaption>
+        <div id="source-link">
+          <a href="https://github.com/964quanyuan/scrabble-assistant" target="_blank" rel="noopener noreferrer">Source code on GitHub</a>
+        </div>
       </figure>
       <div id="artifacts-container" aria-live="polite"></div>
+      <div id="credit">Quan Yuan — 2024</div>
     </div>
 
     <div id="hero-right">
@@ -33,4 +35,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-<!-- ...existing code... -->
