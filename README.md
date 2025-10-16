@@ -10,6 +10,7 @@ Prerequisites
       
 Steps  
 1. ensure package dependencies are installed
-2. run train.py in kpt_rcnn_ml to generate the .pth file for the neural network for corner detection (finding the 4 corners of the Scrabble board) (it is not provided because the neural network is too large)
-3. open iVCAM on the camera device and make sure the Scrabble board is in view  
-4. run scrabble_assistant.bat to start the program   
+2. run train.py in kpt_rcnn_ml to generate the CNN (.pth file) for gameboard corner detection (not provided because the CNN is too large)  
+3. open iVCAM on the device used to scan the gameboard and secure the device according to the diagram shown in the demo link  
+4. make sure the Scrabble board is in view  
+5. run scrabble_assistant.bat to start the program   
