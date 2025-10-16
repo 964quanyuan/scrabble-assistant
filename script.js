@@ -30,8 +30,8 @@ const gallery = document.getElementById('gallery');
 
 // --- artifacts data (3 files) ---
 const artifacts = [
-  { src: 'images/kpt.gif', type: 'gif', title: 'KPT Artifact' },
-  { src: 'images/ocr.gif', type: 'image', title: 'OCR Artifact' },
+  { src: 'images/kpt.gif', type: 'gif', title: 'Keypoint Detection Artifact' },
+  { src: 'images/ocr.gif', type: 'gif', title: 'Tile Recognition Artifact' },
   { src: 'images/solu.gif', type: 'gif', title: 'Solution Artifact' },
 ];
 
