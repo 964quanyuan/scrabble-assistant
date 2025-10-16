@@ -1,6 +1,6 @@
-DEMO: [click here](https://964quanyuan.github.io/scrabble-assistant/)
+### DEMO: [click here](https://964quanyuan.github.io/scrabble-assistant/)
 
-Prerequisites  
+### Prerequisites  
 1. WS Game Company [Scrabble Set](https://www.wsgamecompany.com/scrabble-deluxe-edition.html)
 2. Windows OS (only runs on Windows)  
 3. iVCAM (installed both in camera device and host machine)
@@ -8,7 +8,7 @@ Prerequisites
 5. CUDA Toolkit (>= v.12.5)
 6. package dependencies listed in requirements.txt
       
-Steps  
+### Setup  
 1. ensure package dependencies are installed
 2. run train.py in kpt_rcnn_ml to generate the CNN (.pth file) for gameboard corner detection (not provided because the CNN is too large)  
 3. open iVCAM on the device used to scan the gameboard and secure the device according to the diagram shown in the demo link  
