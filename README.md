@@ -5,10 +5,8 @@
 2. Windows OS (only runs on Windows)  
 3. iVCAM (installed both in camera device and host machine)
 4. CUDA-capable GPU (without the GPU, training and executing will be inefficient)
-5. CUDA Toolkit (version >= 12.5)
+5. CUDA Toolkit (version ≥ 12.5)
 6. package dependencies listed in requirements.txt
-7. (= gofuckyourself)
-8. (> 13.5)
       
 ### Setup  
 1. ensure package dependencies are installed
